@@ -14,11 +14,7 @@ const NotFound = () => (
     >
       Home
     </Link>
-    <img
-      className=" w-96 h-80 mt-4"
-      src={NotFoundImg} // Replace with your own image source
-      alt="404 Not Found"
-    />
+    <img className=" w-96 h-80 mt-4" src={NotFoundImg} alt="404 Not Found" />
   </div>
 );
 

@@ -24,11 +24,7 @@ function MergedSubject() {
 
   return (
     <div className={`flex ${isSidebarOpen ? "overflow-hidden" : ""}`}>
-      <div
-        className={`${
-          isSidebarOpen ? "w-64 transition-all duration-300 ease-in" : "w-0"
-        }`}
-      >
+      <div className={`${isSidebarOpen ? "w-64 " : "w-0"}`}>
         <Sidebar isOpen={isSidebarOpen} onToggle={setIsSidebarOpen} />
       </div>
 
@@ -39,7 +35,7 @@ function MergedSubject() {
       >
         {!isSidebarOpen && (
           <button
-            className="p-2 pt-4 flex justify-center flex-wrap"
+            className="p-2 pl-4 pt-4 flex justify-center flex-wrap"
             onClick={handleToggle}
           >
             <AiOutlineMenu size={20} />
@@ -49,7 +45,7 @@ function MergedSubject() {
       <div className="container flex-1 mx-auto ">
         <Header />
 
-        <div className="flex px-2 border-b border-indigo-100 rounded-md my-4">
+        <div className="flex px-2 border border-indigo-100 rounded-md my-4">
           <Link
             to="/managesubject"
             className={` rounded-md px-4 py-2 text-indigo-600 text-sm `}
@@ -77,16 +73,16 @@ function MergedSubject() {
         <table className="min-w-full text-sm bg-white border rounded-md border-gray-100">
           <thead>
             <tr>
-              <th className="text-left py-2 px-2 border-b font-semibold ">
+              <th className="text-left py-2 px-2 border font-semibold">
                 Merge Name
               </th>
-              <th className="text-left py-2 px-4 border-b font-semibold">
+              <th className="text-left py-2 px-4 border font-semibold">
                 Grade
               </th>
-              <th className="text-left py-2 px-4 border-b font-semibold">
+              <th className="text-left py-2 px-4 border font-semibold">
                 Merged Subject List
               </th>
-              <th className="text-left py-2 px-4 border-b font-semibold">
+              <th className="text-left py-2 px-4 border font-semibold">
                 Percentage
               </th>
             </tr>
@@ -95,19 +91,23 @@ function MergedSubject() {
             {tableData.map((row, index) => (
               <tr
                 key={row.id}
-                className={`min-h-24 ${
-                  index % 2 === 0
-                    ? "bg-gray-100"
-                    : "bg-white hover:bg-indigo-100"
-                }  transition-colors duration-500
-                
-                `}
+                className={`min-h-24 bg-gray-100 ${
+                  index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                }`}
                 style={{ height: "70px" }}
               >
-                <td className="py-2 px-2 border-b">{row.id}</td>
-                <td className="py-2 px-4 border-b">{row.subjectName}</td>
-                <td className="py-2 px-4 border-b">{row.grade}</td>
-                <td className="py-2 px-4 border-b">{row.dateCreated}</td>
+                <td className="py-2 px-2 border">
+                  <button className="mx-2 px-4 py-1 bg-indigo-500 text-white border border-indigo-600 hover:bg-indigo-600 rounded-xl">
+                    {row.id}mathematics
+                  </button>
+                </td>
+                <td className="py-2 px-4 border">{row.grade}</td>
+                <td className="py-2  border">
+                  <p className="px-4 py-1">mathematics in amharic</p>
+                  <hr className="border-gray-300" />
+                  <p className="px-4 py-1">mathematics in english</p>
+                </td>
+                <td className="py-2 px-4 border">{row.grade}</td>
               </tr>
             ))}
           </tbody>

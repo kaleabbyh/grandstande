@@ -42,7 +42,7 @@ function ManageSubject() {
       >
         {!isSidebarOpen && (
           <button
-            className="p-2 pt-4 flex justify-center flex-wrap"
+            className="p-2 pl-4 pt-4 flex justify-center flex-wrap"
             onClick={handleToggle}
           >
             <AiOutlineMenu size={20} />

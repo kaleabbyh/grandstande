@@ -28,12 +28,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
 
   return (
     <div
-      className={` mt-2 mb-24 pl-2 flex flex-col  w-64 pt-4 h-screen fixed  top-0 left-0 transition-transform transform ${
+      className={` mb-24 pl-2 pt-4 flex flex-col  w-64  h-screen fixed  top-0 left-0 transition-transform transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
       style={{ transitionDuration: "0.5s" }}
     >
-      <button className="p-2 pl-4 mx-2 mb-4 mt-1 " onClick={handleToggle}>
+      <button className="p-2 pt-3 pl-4 mx-2 mb-4 mt-1 " onClick={handleToggle}>
         <AiOutlineMenu size={20} />
       </button>
       <div className="overflow-y-scroll">
