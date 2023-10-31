@@ -67,15 +67,15 @@ function ManageSubject() {
           </Link>
 
           <Link
-            to="#"
+            to="/studentlist"
             className={` rounded-md px-4 py-2 text-indigo-600 text-sm `}
           >
             Sub Subject
           </Link>
         </div>
-        <button className="flex  items-center flex-wrap mt-4 mb-2 mx-2 rounded-lg px-4 py-2 text-white text-sm bg-indigo-500 transform transition-transform hover:scale-105">
-          <IoMdAddCircle size={20} />
-          <span className="px-1">add subject</span>
+        <button className="flex  items-center flex-wrap mt-4 mb-2 mx-2 rounded-lg px-3 py-2 text-white text-sm bg-indigo-500 transform transition-transform hover:scale-105">
+          <IoMdAddCircle size={24} />
+          <span className="px-1">Add Subject</span>
         </button>
         <table className="min-w-full text-sm bg-white border rounded-md border-gray-100">
           <thead>

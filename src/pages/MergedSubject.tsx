@@ -60,14 +60,14 @@ function MergedSubject() {
           </Link>
 
           <Link
-            to=""
+            to="/studentlist"
             className={` rounded-md px-4 py-2 text-indigo-600 text-sm  `}
           >
             Sub Subject
           </Link>
         </div>
-        <button className="flex  items-center flex-wrap mt-4 mb-2 mx-2 rounded-lg px-4 py-2 text-white text-sm bg-indigo-500 transform transition-transform hover:scale-105">
-          <IoMdAddCircle size={20} />
+        <button className="flex  items-center flex-wrap mt-4 mb-2 mx-2 rounded-lg px-3 py-2 text-white text-sm bg-indigo-500 transform transition-transform hover:scale-105">
+          <IoMdAddCircle size={24} />
           <span className="px-1">Add Merged Subject</span>
         </button>
         <table className="min-w-full text-sm bg-white border rounded-md border-gray-100">
@@ -103,9 +103,9 @@ function MergedSubject() {
                 </td>
                 <td className="py-2 px-4 border">{row.grade}</td>
                 <td className="py-2  border">
-                  <p className="px-4 py-1">mathematics in amharic</p>
+                  <p className="px-4 py-2">Mathematics in Amharic</p>
                   <hr className="border-gray-300" />
-                  <p className="px-4 py-1">mathematics in english</p>
+                  <p className="px-4 py-2">Mathematics in English</p>
                 </td>
                 <td className="py-2 px-4 border">{row.grade}</td>
               </tr>

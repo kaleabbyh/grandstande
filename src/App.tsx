@@ -5,6 +5,7 @@ import ManageSubject from "./pages/ManageSubject";
 import MergedSubject from "./pages/MergedSubject";
 
 import NoPage from "./pages/NoPage";
+import StudentsList from "./pages/StudentsList";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <Routes>
         <Route path="/managesubject" element={<ManageSubject />} />
         <Route path="/mergedsubject" element={<MergedSubject />} />
+        <Route path="/studentlist" element={<StudentsList />} />
+
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>
