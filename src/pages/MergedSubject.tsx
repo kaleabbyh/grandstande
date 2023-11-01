@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
+import SubHeader from "../components/Subheader";
 
 function MergedSubject() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -45,29 +46,9 @@ function MergedSubject() {
       <div className="container flex-1 mx-auto ">
         <Header />
 
-        <div className="flex px-2 border border-indigo-100 rounded-md my-4">
-          <Link
-            to="/managesubject"
-            className={` rounded-md px-4 py-2 text-indigo-600 text-sm `}
-          >
-            Manage Subject
-          </Link>
-          <Link
-            to="/mergedsubject"
-            className={` rounded-md px-4 py-2 text-indigo-600 text-sm border border-indigo-200 `}
-          >
-            Merged Subject
-          </Link>
-
-          <Link
-            to="/studentlist"
-            className={` rounded-md px-4 py-2 text-indigo-600 text-sm  `}
-          >
-            Sub Subject
-          </Link>
-        </div>
+        <SubHeader />
         <button className="flex  items-center flex-wrap mt-4 mb-2 mx-2 rounded-lg px-3 py-2 text-white text-sm bg-indigo-500 transform transition-transform hover:scale-105">
-          <IoMdAddCircle size={24} />
+          <IoMdAddCircle size={20} />
           <span className="px-1">Add Merged Subject</span>
         </button>
         <table className="min-w-full text-sm bg-white border rounded-md border-gray-100">
