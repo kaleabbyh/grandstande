@@ -1,19 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
-import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdAddCircle } from "react-icons/io";
-import { Link } from "react-router-dom";
-import SubHeader from "../components/Subheader";
+import SubHeader from "../components/SubHeader";
 
 function MergedSubject() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const handleToggle = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   const tableData = [
     { id: 1, subjectName: "Math", grade: "10", dateCreated: "2021-09-01" },
     { id: 2, subjectName: "Science", grade: "5", dateCreated: "2021-09-05" },
@@ -24,25 +14,8 @@ function MergedSubject() {
   ];
 
   return (
-    <div className={`flex ${isSidebarOpen ? "overflow-hidden" : ""}`}>
-      <div className={`${isSidebarOpen ? "w-64 " : "w-0"}`}>
-        <Sidebar isOpen={isSidebarOpen} onToggle={setIsSidebarOpen} />
-      </div>
-
-      <div
-        className={`bg-white shadow-md py-3 min-h-screen px-2 rounded-md  ${
-          isSidebarOpen ? "transition-all duration-300 ease-in" : ""
-        }`}
-      >
-        {!isSidebarOpen && (
-          <button
-            className="p-2 pl-4 pt-4 flex justify-center flex-wrap"
-            onClick={handleToggle}
-          >
-            <AiOutlineMenu size={20} />
-          </button>
-        )}
-      </div>
+    <div className="flex ">
+      <Sidebar />
       <div className="container flex-1 mx-auto ">
         <Header />
 

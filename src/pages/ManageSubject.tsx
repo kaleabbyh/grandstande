@@ -1,19 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
-import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdAddCircle } from "react-icons/io";
-import { Link } from "react-router-dom";
-import SubHeader from "../components/Subheader";
+import SubHeader from "../components/SubHeader";
 
 function ManageSubject() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const handleToggle = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   const tableData = [
     { id: 1, subjectName: "Math", grade: "10", dateCreated: "2021-09-01" },
     { id: 2, subjectName: "Science", grade: "5", dateCreated: "2021-09-05" },
@@ -31,29 +22,12 @@ function ManageSubject() {
   };
 
   return (
-    <div className={`flex ${isSidebarOpen ? "overflow-hidden" : ""}`}>
-      <div className={`${isSidebarOpen ? "w-64 " : "w-0"}`}>
-        <Sidebar isOpen={isSidebarOpen} onToggle={setIsSidebarOpen} />
-      </div>
-
-      <div
-        className={`bg-white shadow-md py-3 min-h-screen px-2 rounded-md  ${
-          isSidebarOpen ? "transition-all duration-300 ease-in" : ""
-        }`}
-      >
-        {!isSidebarOpen && (
-          <button
-            className="p-2 pl-4 pt-4 flex justify-center flex-wrap"
-            onClick={handleToggle}
-          >
-            <AiOutlineMenu size={20} />
-          </button>
-        )}
-      </div>
+    <div className="flex ">
+      <Sidebar />
       <div className="container flex-1 mx-auto  ">
         <Header />
-
         <SubHeader />
+
         <button className="flex  items-center flex-wrap mt-4 mb-2 mx-2 rounded-lg px-3 py-2 text-white text-sm bg-indigo-500 transform transition-transform hover:scale-105">
           <IoMdAddCircle size={20} />
           <span className="px-1">Add Subject</span>

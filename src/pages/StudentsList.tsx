@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import DeleteConfirmation from "../components/DeleteConfirmation";
 
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
-import { AiOutlineMenu } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import SubHeader from "../components/Subheader";
+import SubHeader from "../components/SubHeader";
 const StudentsList: React.FC = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -23,10 +20,6 @@ const StudentsList: React.FC = () => {
   const openConfirmation = () => {
     setShowConfirmation(true);
   };
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const handleToggle = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
 
   const [isClicked, setIsClicked] = useState(false);
 
@@ -37,25 +30,8 @@ const StudentsList: React.FC = () => {
 
   return (
     <div>
-      <div className={`flex ${isSidebarOpen ? "overflow-hidden" : ""}`}>
-        <div className={`${isSidebarOpen ? "w-64 " : "w-0"}`}>
-          <Sidebar isOpen={isSidebarOpen} onToggle={setIsSidebarOpen} />
-        </div>
-
-        <div
-          className={`bg-white shadow-md py-3 min-h-screen px-2 rounded-md  ${
-            isSidebarOpen ? "transition-all duration-300 ease-in" : ""
-          }`}
-        >
-          {!isSidebarOpen && (
-            <button
-              className="p-2 pl-4 pt-4 flex justify-center flex-wrap"
-              onClick={handleToggle}
-            >
-              <AiOutlineMenu size={20} />
-            </button>
-          )}
-        </div>
+      <div className="flex ">
+        <Sidebar />
         <div className="container flex-1 mx-auto  ">
           <Header />
           <SubHeader />

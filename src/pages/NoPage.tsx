@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
 import NotFoundImg from "../assets/images/notfound.jpg";
 import { Link } from "react-router-dom";
 
