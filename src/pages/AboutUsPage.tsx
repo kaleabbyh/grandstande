@@ -1,43 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { Link } from "react-router-dom";
 
-import { BiLogoFacebook } from "react-icons/bi";
-import { BiLogoTwitter } from "react-icons/bi";
-import { BiLogoGooglePlus } from "react-icons/bi";
-import { TfiYoutube } from "react-icons/tfi";
-import { FaLinkedinIn } from "react-icons/fa";
+import Footer from "../components/Footer";
 
 import ImageCard from "../assets/images/ImageCard.jpg";
 import aboutImg from "../assets/images/aboutImg.jpg";
 
-const AboutUs = () => {
+const AboutUsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  //   const [isVissionOpen, setIsVissionOpen] = useState(false);
-  //   const [isMissionOpen, setIsMissionOpen] = useState(false);
-  //   const [isValuesOpen, setIsValuesOpen] = useState(false);
-
-  //   const openVission = () => {
-  //     setIsMissionOpen(false);
-  //     setIsVissionOpen(true);
-  //     setIsValuesOpen(false);
-  //   };
-  //   const openMission = () => {
-  //     setIsMissionOpen(true);
-  //     setIsVissionOpen(false);
-  //     setIsValuesOpen(false);
-  //   };
-  //   const openValues = () => {
-  //     setIsMissionOpen(false);
-  //     setIsVissionOpen(false);
-  //     setIsValuesOpen(true);
-  //   };
 
   const [activeTab, setActiveTab] = useState("mission");
-
   type TabName = "vission" | "mission" | "values";
-
   const openTab = (tabName: TabName): void => {
     setActiveTab(tabName);
   };
@@ -51,18 +26,19 @@ const AboutUs = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="">
-      <div className=" w-screen ">
+    <div className="flex">
+      <div className={`  w-screen`}>
+        {/* ${isOpen ? "mr-60" : ""} */}
         <Header openSidebar={openSidebar} />
         <div className="  bg-gradient-to-r from-gradientTwo to-gradientThree border-t-10 border-indigo-500 ">
           <div className=" inset-0 bg-black bg-opacity-10"></div>
           <div className="text-gray-600  flex  items-center justify-between">
             <div className=" m-20 p-3 shadow-lg rounded-md bg-white w-full text-sm  font-semibold   ">
-              <span>You are here:</span>
-              <span className=" text-gray-200 hover:text-customGreen">
+              <span className="px-1">You are here:</span>
+              <span className=" text-gray-200 hover:text-customGreen px-1">
                 <Link to="/">Home</Link>
               </span>
-              <span> /About Us</span>
+              <span className="px-1"> /About Us</span>
             </div>
           </div>
         </div>
@@ -287,44 +263,11 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-        <div className="h-20 bg-white gap-3 flex  items-center justify-center">
-          <div className=" gap-3 flex   items-center justify-center">
-            <Link
-              to={"#"}
-              className=" bg-customGreen text-white p-2 hover:bg-customPurple"
-            >
-              <BiLogoFacebook size={30} />
-            </Link>
-            <Link
-              to={"#"}
-              className=" bg-customGreen text-white p-2 hover:bg-customPurple"
-            >
-              <BiLogoTwitter size={30} />
-            </Link>
-            <Link
-              to={"#"}
-              className=" bg-customGreen text-white p-2 hover:bg-customPurple"
-            >
-              <BiLogoGooglePlus size={30} />
-            </Link>
-            <Link
-              to={"#"}
-              className=" bg-customGreen text-white p-2 hover:bg-customPurple"
-            >
-              <TfiYoutube size={30} />
-            </Link>
-            <Link
-              to={"#"}
-              className=" bg-customGreen text-white p-2 hover:bg-customPurple"
-            >
-              <FaLinkedinIn size={30} />
-            </Link>
-          </div>
-        </div>
+        <Footer />
       </div>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
     </div>
   );
 };
 
-export default AboutUs;
+export default AboutUsPage;

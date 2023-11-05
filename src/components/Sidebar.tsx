@@ -1,5 +1,6 @@
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 interface NavbarProps {
   isOpen: boolean;
@@ -7,9 +8,14 @@ interface NavbarProps {
 }
 
 const Sidebar: React.FC<NavbarProps> = ({ isOpen, toggleSidebar }) => {
+  const [activeTab, setActiveTab] = useState("");
+  type TabName = "contact" | "home" | "about" | "service";
+  const openTab = (tabName: TabName): void => {
+    setActiveTab(tabName);
+  };
   return (
     <div
-      className={` top-0 right-0  bottom-0 fixed w-60 pt-4 bg-customPurple text-white flex flex-col transition-transform transform ${
+      className={` top-0 right-0 shadow-lg  flex flex-col h-screen pr-10  w-60 pt-4 bg-customPurple text-white  transition-transform transform ${
         !isOpen ? "hidden" : ""
       }`}
     >
@@ -18,36 +24,51 @@ const Sidebar: React.FC<NavbarProps> = ({ isOpen, toggleSidebar }) => {
       </button>
       <div className="flex flex-col px-2 mr-2 flex-grow overflow-y-auto">
         <Link
-          to="#"
-          className="p-2 my-0 text-sm hover:bg-indigo-800 hover:bg-opacity-20"
+          to="/"
+          onClick={() => openTab("home")}
+          className={`px-4 rounded-xs  p-3 ${
+            activeTab === "home" ? "bg-customGreen" : ""
+          } `}
         >
           HOME
         </Link>
 
         <Link
-          to="#"
-          className="p-2 my-0 text-sm hover:bg-indigo-800 hover:bg-opacity-20"
+          to="/aboutus"
+          onClick={() => openTab("about")}
+          className={`px-4 rounded-xs  p-3 ${
+            activeTab === "about" ? "bg-customGreen" : ""
+          } `}
         >
           ABOUT US
         </Link>
 
         <Link
-          to="#"
-          className="p-2 my-0 text-sm hover:bg-indigo-800 hover:bg-opacity-20"
+          to="/services"
+          onClick={() => openTab("service")}
+          className={`px-4 rounded-xs  p-3 ${
+            activeTab === "service" ? "bg-customGreen" : ""
+          } `}
         >
           SERVICES
         </Link>
 
         <Link
           to="#"
-          className="p-2 my-0 text-sm hover:bg-indigo-800 hover:bg-opacity-20"
+          onClick={() => openTab("home")}
+          className={`px-4 rounded-xs  p-3 ${
+            activeTab === "added" ? "bg-customGreen" : ""
+          } `}
         >
-          ADDED
+          MINING
         </Link>
 
         <Link
-          to="#"
-          className="p-2 my-0 text-sm hover:bg-indigo-800 hover:bg-opacity-20"
+          to="/contact"
+          onClick={() => openTab("contact")}
+          className={`px-4 rounded-xs  p-3 ${
+            activeTab === "contact" ? "bg-customGreen" : ""
+          } `}
         >
           CONTACT
         </Link>

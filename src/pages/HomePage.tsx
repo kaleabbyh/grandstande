@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import IMG1 from "../assets/images/s01.jpg";
@@ -14,13 +15,18 @@ import ex2 from "../assets/images/ex2.jpg";
 import ex3 from "../assets/images/man2.jpg";
 import ex1 from "../assets/images/importer.jpg";
 
-import { useState } from "react";
 import SliderComponent from "../components/SliderComponent";
 import { AiOutlineMenu } from "react-icons/ai";
-import { Link } from "react-router-dom";
+
 import Cards from "../components/Cards";
+import Footer from "../components/Footer";
 
 function HomePage() {
+  const [activeTab, setActiveTab] = useState("SHOW ALL");
+  type TabName = "SHOW ALL" | "IMPORT" | "EXPORT" | "MANUFACTURING";
+  const openTab = (tabName: TabName): void => {
+    setActiveTab(tabName);
+  };
   const [isOpen, setIsOpen] = useState(false);
   const openSidebar = () => {
     setIsOpen(!isOpen);
@@ -74,10 +80,9 @@ function HomePage() {
   // ];
 
   return (
-    <div className="">
-      <div className=" w-screen ">
+    <div className="flex">
+      <div className={`  w-screen`}>
         <Header openSidebar={openSidebar} />
-
         <SliderComponent />
 
         <div className="flex flex-wrap justify-center gap-10 items-center my-10 mx-2 p-2 py-10">
@@ -158,50 +163,86 @@ function HomePage() {
               </div>
               <div>All Our Import & Export Products ..</div>
               <div className="flex  items-center gap-2 my-10 m-4 justify-center">
-                <Link
-                  to={"/"}
-                  className=" px-4 py-2   rounded-md text-white text-sm bg-customPurple "
+                <button
+                  onClick={() => openTab("SHOW ALL")}
+                  className={`px-4 py-2   rounded-md text-white text-sm  ${
+                    activeTab === "SHOW ALL" ? "bg-customPurple" : "bg-gray-800"
+                  } `}
                 >
                   SHOW ALL
-                </Link>
-                <Link
-                  to={"/"}
-                  className=" px-4 py-2   rounded-md text-white text-sm bg-gray-800 "
+                </button>
+                <button
+                  onClick={() => openTab("IMPORT")}
+                  className={`px-4 py-2   rounded-md text-white text-sm  ${
+                    activeTab === "IMPORT" ? "bg-customPurple" : "bg-gray-800"
+                  } `}
                 >
                   IMPORT
-                </Link>
-                <Link
-                  to={"/"}
-                  className=" px-4 py-2   rounded-md text-white text-sm bg-gray-800 "
+                </button>
+                <button
+                  onClick={() => openTab("EXPORT")}
+                  className={`px-4 py-2   rounded-md text-white text-sm  ${
+                    activeTab === "EXPORT" ? "bg-customPurple" : "bg-gray-800"
+                  } `}
                 >
                   EXPORT
-                </Link>
-                <Link
-                  to={"/"}
-                  className=" px-4 py-2   rounded-md text-white text-sm bg-gray-800 "
+                </button>
+                <button
+                  onClick={() => openTab("MANUFACTURING")}
+                  className={`px-4 py-2   rounded-md text-white text-sm  ${
+                    activeTab === "MANUFACTURING"
+                      ? "bg-customPurple"
+                      : "bg-gray-800"
+                  } `}
                 >
-                  MANUFACTURING
-                </Link>
+                  EXPORT
+                </button>
               </div>
               <div className="mx-24 flex flex-wrap gap-6 items-start top-0">
-                {/* {CARDS.map((card, index) => (
-                  <Cards key={index} card={card} />
-                ))} */}
-                <div className=" flex flex-col gap-6">
-                  <Cards card={card1} />
-                  <Cards card={card2} />
-                </div>
-                <div className=" flex flex-col gap-6">
-                  <Cards card={card3} />
-                  <Cards card={card4} />
-                </div>
-                <div className=" flex flex-col gap-6">
-                  <Cards card={card5} />
-                  <Cards card={card6} />
-                </div>
-                <div className=" flex flex-col gap-6">
-                  <Cards card={card7} />
-                </div>
+                {activeTab == "SHOW ALL" && (
+                  <>
+                    <div className=" flex flex-col gap-6">
+                      <Cards card={card1} />
+                      <Cards card={card2} />
+                    </div>
+                    <div className=" flex flex-col gap-6">
+                      <Cards card={card3} />
+                      <Cards card={card4} />
+                    </div>
+                    <div className=" flex flex-col gap-6">
+                      <Cards card={card5} />
+                      <Cards card={card6} />
+                    </div>
+                    <div className=" flex flex-col gap-6">
+                      <Cards card={card7} />
+                    </div>
+                  </>
+                )}
+                {activeTab == "IMPORT" && (
+                  <>
+                    <div className=" flex flex-col gap-6">
+                      <Cards card={card3} />
+                    </div>
+
+                    <div className=" flex flex-col gap-6">
+                      <Cards card={card7} />
+                    </div>
+                  </>
+                )}
+                {activeTab == "EXPORT" && (
+                  <>
+                    <Cards card={card1} />
+                    <Cards card={card2} />
+
+                    <Cards card={card4} />
+                  </>
+                )}
+                {activeTab == "MANUFACTURING" && (
+                  <>
+                    <Cards card={card5} />
+                    <Cards card={card6} />
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -306,8 +347,11 @@ function HomePage() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
-      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
+      <div className="fixed top-0 bottom-0 right-0">
+        <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
+      </div>
     </div>
   );
 }

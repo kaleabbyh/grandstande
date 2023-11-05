@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ManageSubject from "./pages/ManageSubject";
-import MergedSubject from "./pages/MergedSubject";
 
 import NoPage from "./pages/NoPage";
-import StudentsList from "./pages/StudentsList";
 import HomePage from "./pages/HomePage";
-import AboutUs from "./pages/AboutUs";
+import AboutUs from "./pages/AboutUsPage";
+import ServicesPage from "./pages/ServicesPage";
+import ContanctsPage from "./pages/ContanctsPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -13,10 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/aboutus" element={<AboutUs />} />
-
-        <Route path="/managesubject" element={<ManageSubject />} />
-        <Route path="/mergedsubject" element={<MergedSubject />} />
-        <Route path="/studentlist" element={<StudentsList />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/contact" element={<ContanctsPage />} />
+        <Route path="/login" element={<LoginPage />} />
 
         <Route path="*" element={<NoPage />} />
       </Routes>
