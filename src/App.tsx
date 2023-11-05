@@ -5,12 +5,15 @@ import MergedSubject from "./pages/MergedSubject";
 import NoPage from "./pages/NoPage";
 import StudentsList from "./pages/StudentsList";
 import HomePage from "./pages/HomePage";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+
         <Route path="/managesubject" element={<ManageSubject />} />
         <Route path="/mergedsubject" element={<MergedSubject />} />
         <Route path="/studentlist" element={<StudentsList />} />
