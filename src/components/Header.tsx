@@ -1,5 +1,5 @@
 import IMG from "../assets/images/ketura_cropped.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { BiLogoFacebook } from "react-icons/bi";
@@ -10,12 +10,71 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsPhone } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { IoPersonCircleSharp } from "react-icons/io5";
+
+import { useState, useEffect, useRef } from "react";
 
 interface HeaderProps {
   openSidebar: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ openSidebar }) => {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setIsDropdownOpen(false);
+    }
+  };
+
+  const [isDropdownLogoutOpen, setIsDropdownLogoutOpen] = useState(false);
+  const dropdownLogoutRef = useRef<HTMLDivElement>(null);
+  const handleDropdownLogoutToggle = () => {
+    setIsDropdownLogoutOpen(!isDropdownLogoutOpen);
+  };
+
+  const handleOutsideLogoutClick = (event: MouseEvent) => {
+    if (
+      dropdownLogoutRef.current &&
+      !dropdownLogoutRef.current.contains(event.target as Node)
+    ) {
+      setIsDropdownLogoutOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("mousedown", handleOutsideLogoutClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideLogoutClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideLogoutClick);
+    };
+  }, []);
+
   return (
     <div className="">
       <div className="  bg-gradient-to-b from-gradientTwo to-customPurple border-t-10 border-indigo-500 ">
@@ -91,18 +150,86 @@ const Header: React.FC<HeaderProps> = ({ openSidebar }) => {
             >
               SERVICES
             </Link>
-            <Link
-              to="/"
-              className="text-gray-800 text-sm hover:text-customGreen px-3  rounded-md"
-            >
-              MINING
-            </Link>
+            <div ref={dropdownRef}>
+              <button
+                onClick={handleDropdownToggle}
+                className="text-gray-800 text-sm hover:text-customGreen px-3 rounded-md"
+              >
+                <span className="flex justify-center items-center gap-1">
+                  MINING <IoIosArrowDropdownCircle size={16} />
+                </span>
+              </button>
+              {isDropdownOpen && (
+                <div className=" absolute z-10 bg-gray-100 mt-1 py-2 px-4 shadow-xl rounded-md">
+                  <Link
+                    to="/mining"
+                    className="block text-gray-800 text-sm hover:text-customGreen py-2"
+                  >
+                    Mining Page 1
+                  </Link>
+                  <Link
+                    to="/mining-page-2"
+                    className="block text-gray-800 text-sm hover:text-customGreen py-2"
+                  >
+                    Mining Page 2
+                  </Link>
+                  <Link
+                    to="/mining-page-2"
+                    className="block text-gray-800 text-sm hover:text-customGreen py-2"
+                  >
+                    Mining Page 2
+                  </Link>
+                  <Link
+                    to="/mining-page-2"
+                    className="block text-gray-800 text-sm hover:text-customGreen py-2"
+                  >
+                    Mining Page 2
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link
               to="/contact"
               className="text-gray-800 text-sm hover:text-customGreen px-3  rounded-md"
             >
               CONTACT
             </Link>
+
+            {token && (
+              <div className="   " ref={dropdownLogoutRef}>
+                <button
+                  onClick={handleDropdownLogoutToggle}
+                  className="text-gray-800 text-sm hover:text-customGreen px-3 rounded-md items-center"
+                >
+                  <IoPersonCircleSharp size={24} />
+                </button>
+                {isDropdownLogoutOpen && (
+                  <div className=" absolute z-10 bg-gray-100 mt-1 py-2 px-4 shadow-xl rounded-md">
+                    <button
+                      onClick={logout}
+                      className="block text-gray-800 text-sm hover:text-customGreen py-2"
+                    >
+                      Logout
+                    </button>
+                    <Link
+                      to="/addmining"
+                      className="block text-gray-800 text-sm hover:text-customGreen py-2"
+                    >
+                      add mining
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
+            {!token && (
+              <Link
+                to="/login"
+                className="text-gray-800 text-sm hover:text-customGreen px-3  rounded-md"
+              >
+                <IoPersonCircleSharp size={24} />
+              </Link>
+            )}
           </div>
         </div>
         <button

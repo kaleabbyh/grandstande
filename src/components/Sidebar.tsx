@@ -15,7 +15,7 @@ const Sidebar: React.FC<NavbarProps> = ({ isOpen, toggleSidebar }) => {
   };
   return (
     <div
-      className={` top-0 right-0 shadow-lg  flex flex-col h-screen pr-10  w-60 pt-4 bg-customPurple text-white  transition-transform transform ${
+      className={`fixed  top-0 right-0 h-screen shadow-lg flex flex-col pr-10 w-60 pt-4 bg-customPurple text-white transition-transform transform ${
         !isOpen ? "hidden" : ""
       }`}
     >
